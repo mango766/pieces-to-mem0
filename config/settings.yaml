@@ -1,0 +1,94 @@
+# Memory Janitor Agent Configuration
+# ===================================
+
+# Application Settings
+app:
+  name: "Memory Janitor"
+  version: "0.1.0"
+  debug: false
+
+# Pieces OS Integration
+pieces:
+  host: "http://localhost"
+  port: 39300
+  timeout: 30
+  # Checkpoint file for incremental data fetching
+  checkpoint_file: "data/pieces_checkpoint.json"
+
+# Mem0 Integration
+mem0:
+  # "cloud" or "local"
+  mode: "cloud"
+  api_base: "https://api.mem0.ai/v1"
+  # API key should be set via environment variable MEM0_API_KEY
+  default_user_id: "memory_janitor_user"
+  
+  # Metadata defaults
+  metadata:
+    source_app: "memory_janitor"
+
+# LLM Configuration
+llm:
+  # Primary provider: "gemini" or "anthropic"
+  provider: "gemini"
+  
+  gemini:
+    model: "gemini-1.5-flash"
+    temperature: 0.3
+    max_tokens: 2048
+  
+  anthropic:
+    model: "claude-3-5-haiku-20241022"
+    temperature: 0.3
+    max_tokens: 2048
+
+# Scheduler Configuration
+scheduler:
+  # Enable scheduled processing
+  enabled: true
+  # Interval in minutes
+  interval_minutes: 60
+  # Timezone
+  timezone: "Asia/Shanghai"
+
+# Processing Pipeline
+pipeline:
+  # Batch size for LLM processing
+  batch_size: 10
+  
+  # Cleaner node settings
+  cleaner:
+    # System prompt for noise filtering (loaded from prompts/)
+    prompt_file: "prompts/cleaner.txt"
+  
+  # Reasoner node settings
+  reasoner:
+    # System prompt for priority classification
+    prompt_file: "prompts/reasoner.txt"
+    # Priority categories
+    high_priority_categories:
+      - "core_decision"      # 核心决策
+      - "tech_discovery"     # 技术发现
+      - "user_preference"    # 用户偏好
+      - "project_milestone"  # 项目里程碑
+  
+  # Deduplicator settings
+  deduplicator:
+    # Similarity threshold for considering duplicates
+    similarity_threshold: 0.85
+    # Max results to check for duplicates
+    search_limit: 5
+
+# Dashboard Settings
+dashboard:
+  host: "127.0.0.1"
+  port: 7860
+  share: false
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  format: "json"  # "json" or "console"
+  file: "logs/memory_janitor.log"
+  max_size_mb: 10
+  backup_count: 5
