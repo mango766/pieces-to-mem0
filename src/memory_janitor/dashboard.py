@@ -11,6 +11,11 @@ import asyncio
 from datetime import datetime
 from typing import Any, Generator
 
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
 import gradio as gr
 
 from memory_janitor.adapters.mem0 import Mem0Adapter

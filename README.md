@@ -95,20 +95,23 @@ pip install -e .
 
 ### 3. 配置环境变量
 
+> [!WARNING]
+> `.env` 文件包含敏感的 API 密钥，**不会被提交到 Git 仓库**。首次使用必须手动创建！
+
 ```bash
 cp .env.example .env
 ```
 
-编辑 `.env` 文件，填入 API 密钥：
+编辑 `.env` 文件，填入你的 API 密钥：
 
 ```bash
-# Mem0 API 密钥 (必需)
-MEM0_API_KEY=your_mem0_api_key
+# Mem0 API 密钥 (必需) - 从 https://app.mem0.ai/settings 获取
+MEM0_API_KEY=m0-your-api-key-here
 
-# LLM 提供商 (二选一)
-GOOGLE_API_KEY=your_gemini_api_key
+# LLM 提供商 (至少配置一个)
+GOOGLE_API_KEY=your_gemini_api_key      # 从 https://aistudio.google.com/apikey 获取
 # 或
-ANTHROPIC_API_KEY=your_claude_api_key
+ANTHROPIC_API_KEY=your_claude_api_key   # 从 https://console.anthropic.com/ 获取
 ```
 
 ### 4. 验证安装

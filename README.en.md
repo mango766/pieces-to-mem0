@@ -95,6 +95,9 @@ pip install -e .
 
 ### 3. Configure Environment Variables
 
+> [!WARNING]
+> The `.env` file contains sensitive API keys and is **NOT committed to Git**. You must create it manually on first use!
+
 ```bash
 cp .env.example .env
 ```
@@ -102,13 +105,13 @@ cp .env.example .env
 Edit `.env` file with your API keys:
 
 ```bash
-# Mem0 API Key (Required)
-MEM0_API_KEY=your_mem0_api_key
+# Mem0 API Key (Required) - Get from https://app.mem0.ai/settings
+MEM0_API_KEY=m0-your-api-key-here
 
-# LLM Provider (Choose one)
-GOOGLE_API_KEY=your_gemini_api_key
+# LLM Provider (At least one required)
+GOOGLE_API_KEY=your_gemini_api_key      # Get from https://aistudio.google.com/apikey
 # or
-ANTHROPIC_API_KEY=your_claude_api_key
+ANTHROPIC_API_KEY=your_claude_api_key   # Get from https://console.anthropic.com/
 ```
 
 ### 4. Verify Installation
