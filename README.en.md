@@ -15,7 +15,11 @@
 
 ## Overview
 
-**A personal memory consolidation Agent built on LangGraph workflow to solve the "memory silo" problem in AI coding assistants. Through an LLM-driven five-stage pipeline (Collect → Denoise → Deduplicate → Classify → Store), it distills Pieces OS screen activity data into structured semantic memories, persisting to Mem0 for cross-tool long-term memory sharing.**
+**🚀 Tired of your AI assistant acting like a "complete stranger" every morning?**
+
+**Pieces-to-Mem0** is the ultimate **Personal Memory Automation Bridge**. It seamlessly connects **Pieces OS** (omnipresent context capture) with **Mem0** (the intelligent memory layer). Using a sophisticated LLM-driven pipeline, it distills your fragmented screen activity, code snippets, and workflows into high-fidelity semantic memories.
+
+**The Goal**: Capture your digital footprints to make AI assistants truly "get" you. By leveraging the [Mem0 MCP](https://docs.mem0.ai/mcp) protocol, your personalized memory becomes instantly accessible across tools like Cursor and Claude Desktop. **Stop repeating yourself—start building your digital second brain today!**
 
 ---
 
