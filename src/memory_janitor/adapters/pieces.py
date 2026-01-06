@@ -171,14 +171,24 @@ class PiecesAdapter(ActivitySource):
                 else datetime.now()
             )
             
-            # Extract content - try multiple fields
+            # Extract content - try multiple fields in order of preference
             content = ""
-            if "summary" in event:
+            
+            # 1. Try 'readable' field (main content from Pieces OS)
+            if event.get("readable"):
+                content = event["readable"]
+            
+            # 2. Try 'summary' field
+            elif "summary" in event and event["summary"]:
                 summary = event["summary"]
                 if isinstance(summary, dict):
                     content = summary.get("text", "")
                 else:
                     content = str(summary)
+            
+            # 3. Try context.native_ocr
+            elif event.get("context", {}).get("native_ocr"):
+                content = str(event["context"]["native_ocr"])
             
             # Skip empty content
             if not content.strip():
@@ -187,6 +197,11 @@ class PiecesAdapter(ActivitySource):
             # Extract application info
             app_info = event.get("application", {})
             application = app_info.get("name")
+            
+            # Extract window title as additional context
+            window_title = event.get("windowTitle")
+            if window_title:
+                content = f"[{window_title}]\n{content}"
             
             return ActivityItem(
                 id=event.get("id", ""),
@@ -213,13 +228,26 @@ class PiecesAdapter(ActivitySource):
                 else datetime.now()
             )
             
-            # Extract content
-            summary_obj = summary.get("summary", {})
+            # Extract content - try multiple fields
             content = ""
-            if isinstance(summary_obj, dict):
-                content = summary_obj.get("text", "")
-            else:
-                content = str(summary_obj)
+            
+            # 1. Try 'readable' field
+            if summary.get("readable"):
+                content = summary["readable"]
+            
+            # 2. Try 'summary' field
+            elif "summary" in summary and summary["summary"]:
+                summary_obj = summary["summary"]
+                if isinstance(summary_obj, dict):
+                    content = summary_obj.get("text", "")
+                else:
+                    content = str(summary_obj)
+            
+            # 3. Try 'body' or 'text' directly
+            elif summary.get("body"):
+                content = summary["body"]
+            elif summary.get("text"):
+                content = summary["text"]
             
             if not content.strip():
                 return None
