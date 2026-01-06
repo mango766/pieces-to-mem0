@@ -1,4 +1,4 @@
-# <img src="https://raw.githubusercontent.com/mem0ai/mem0/main/docs/images/banner-sm.png" width="80" align="left"> Memory Janitor
+# <img src="https://raw.githubusercontent.com/mem0ai/mem0/main/docs/images/banner-sm.png" width="80" align="left"> Pieces-to-Mem0
 
 ![Python](https://img.shields.io/badge/Python-3.11+-blue?logo=python&logoColor=white)
 ![macOS](https://img.shields.io/badge/macOS-supported-success?logo=apple)
@@ -79,7 +79,7 @@
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/your-username/pieces-to-mem0.git
+git clone https://github.com/mango766/pieces-to-mem0.git
 cd pieces-to-mem0
 ```
 
